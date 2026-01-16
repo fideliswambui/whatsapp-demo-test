@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test WhatsApp - Business Solutions</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: #333;
+    }
+
+    .hero {
+      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                  url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1920&q=80');
+      background-size: cover;
+      background-position: center;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+    }
+
+    .hero-content {
+      max-width: 800px;
+      padding: 20px;
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      margin-bottom: 20px;
+      font-weight: 700;
+    }
+
+    .hero p {
+      font-size: 1.3rem;
+      margin-bottom: 30px;
+    }
+
+    .cta-button {
+      display: inline-block;
+      padding: 15px 40px;
+      background: #25D366;
+      color: white;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 600;
+      transition: background 0.3s;
+    }
+
+    .cta-button:hover {
+      background: #128C7E;
+    }
+
+    .features {
+      padding: 80px 20px;
+      background: #f5f5f5;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 50px;
+      color: #2c3e50;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 40px;
+    }
+
+    .feature-card {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      text-align: center;
+      transition: transform 0.3s;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-10px);
+    }
+
+    .feature-icon {
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+
+    .feature-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+      color: #2c3e50;
+    }
+
+    .feature-card p {
+      color: #666;
+    }
+
+    .about {
+      padding: 80px 20px;
+      background: white;
+    }
+
+    .about-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .about-image {
+      width: 100%;
+      height: 400px;
+      background: url('https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=800&q=80');
+      background-size: cover;
+      background-position: center;
+      border-radius: 10px;
+    }
+
+    .about-text h2 {
+      font-size: 2.2rem;
+      margin-bottom: 20px;
+      color: #2c3e50;
+    }
+
+    .about-text p {
+      margin-bottom: 15px;
+      color: #666;
+      font-size: 1.1rem;
+    }
+
+    footer {
+      background: #2c3e50;
+      color: white;
+      text-align: center;
+      padding: 30px 20px;
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero p {
+        font-size: 1.1rem;
+      }
+
+      .about-content {
+        grid-template-columns: 1fr;
+      }
+
+      .about-image {
+        height: 300px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Transform Your Business Communication</h1>
+      <p>Connect with customers instantly through WhatsApp. Automated responses, 24/7 availability, and seamless integration.</p>
+      <a href="#features" class="cta-button">Learn More</a>
+    </div>
+  </section>
+
+  <section class="features" id="features">
+    <div class="container">
+      <h2 class="section-title">Why Choose Us</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">🚀</div>
+          <h3>Fast & Reliable</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Instant responses to keep your customers engaged.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">💬</div>
+          <h3>Smart Automation</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Automate common queries and focus on what matters.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📊</div>
+          <h3>Analytics Dashboard</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Track conversations and measure performance.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔒</div>
+          <h3>Secure & Private</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. End-to-end encryption for all communications.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="about">
+    <div class="container">
+      <div class="about-content">
+        <div class="about-image"></div>
+        <div class="about-text">
+          <h2>About Our Solution</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+          <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit.</p>
+          <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2026 Test WhatsApp. All rights reserved.</p>
+  </footer>
+
+  <!-- WhatsApp Widget Script -->
+  <script>
+    (function() {
+      const script = document.createElement('script');
+      script.src = "https://wa-widget.emalify.com/widget/whatsapp-widget.js";
+      script.setAttribute("whatsapp", "254117258331");
+      script.setAttribute("buttonname", "Contact Us");
+      script.setAttribute("brandimage", "https://business.emalify.com/img/faviconemali.png");
+      script.setAttribute("brandname", "Test WhatsApp");
+      script.setAttribute("brandsubtitle", "Customer Support");
+      script.setAttribute("buttonSize", "medium");
+      script.setAttribute("buttonPosition", "right");
+      script.setAttribute("prefill", "Hi, I'd like to know more about your services.");
+      script.setAttribute("welcome", "Welcome! How can we help you today?");
+      script.setAttribute("buttonIconSize", "small");
+      script.setAttribute("cta", "Start Chat");
+      document.body.appendChild(script);
+    })();
+  </script>
+</body>
+</html>
