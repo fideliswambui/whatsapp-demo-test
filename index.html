@@ -55,10 +55,22 @@
       border-radius: 50px;
       font-weight: 600;
       transition: background 0.3s;
+      cursor: pointer;
+      border: none;
+      font-size: 1rem;
+      margin: 10px;
     }
 
     .cta-button:hover {
       background: #128C7E;
+    }
+
+    .cta-button.secondary {
+      background: #075E54;
+    }
+
+    .cta-button.secondary:hover {
+      background: #054740;
     }
 
     .features {
@@ -152,6 +164,182 @@
       padding: 30px 20px;
     }
 
+    /* Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.5);
+      animation: fadeIn 0.3s;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .modal-content {
+      background-color: #fefefe;
+      margin: 10% auto;
+      padding: 0;
+      border-radius: 15px;
+      width: 90%;
+      max-width: 450px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+      animation: slideIn 0.3s;
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateY(-50px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .modal-header {
+      background: linear-gradient(135deg, #25D366, #128C7E);
+      color: white;
+      padding: 25px 30px;
+      border-radius: 15px 15px 0 0;
+    }
+
+    .modal-header h2 {
+      margin: 0;
+      font-size: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .modal-body {
+      padding: 30px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      color: #2c3e50;
+      font-weight: 600;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 12px 15px;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: border-color 0.3s;
+    }
+
+    .form-group input:focus {
+      outline: none;
+      border-color: #25D366;
+    }
+
+    .modal-footer {
+      padding: 0 30px 30px;
+      display: flex;
+      gap: 10px;
+      justify-content: flex-end;
+    }
+
+    .btn {
+      padding: 12px 30px;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .btn-primary {
+      background: #25D366;
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: #128C7E;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+    }
+
+    .btn-primary:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .btn-secondary {
+      background: #f5f5f5;
+      color: #333;
+    }
+
+    .btn-secondary:hover {
+      background: #e0e0e0;
+    }
+
+    .close {
+      color: white;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      line-height: 20px;
+      cursor: pointer;
+      opacity: 0.8;
+      transition: opacity 0.3s;
+    }
+
+    .close:hover {
+      opacity: 1;
+    }
+
+    .alert {
+      padding: 15px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      display: none;
+    }
+
+    .alert-success {
+      background-color: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+    }
+
+    .alert-error {
+      background-color: #f8d7da;
+      color: #721c24;
+      border: 1px solid #f5c6cb;
+    }
+
+    .loading {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      border: 3px solid rgba(255,255,255,.3);
+      border-radius: 50%;
+      border-top-color: white;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
     @media (max-width: 768px) {
       .hero h1 {
         font-size: 2.5rem;
@@ -168,6 +356,10 @@
       .about-image {
         height: 300px;
       }
+
+      .modal-content {
+        margin: 20% auto;
+      }
     }
   </style>
 </head>
@@ -177,6 +369,7 @@
       <h1>Transform Your Business Communication</h1>
       <p>Connect with customers instantly through WhatsApp. Automated responses, 24/7 availability, and seamless integration.</p>
       <a href="#features" class="cta-button">Learn More</a>
+      <button class="cta-button secondary" onclick="openBoardingPassModal()"> Download Boarding Pass</button>
     </div>
   </section>
 
@@ -222,6 +415,40 @@
     </div>
   </section>
 
+  <!-- Boarding Pass Modal -->
+  <div id="boardingPassModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="close" onclick="closeBoardingPassModal()">&times;</span>
+        <h2> Get Your Boarding Pass</h2>
+      </div>
+      <div class="modal-body">
+        <div id="alertBox" class="alert"></div>
+        <form id="boardingPassForm" onsubmit="sendBoardingPass(event)">
+          <div class="form-group">
+            <label for="phoneNumber">WhatsApp Phone Number</label>
+            <input 
+              type="tel" 
+              id="phoneNumber" 
+              name="phoneNumber" 
+              placeholder="254712345678" 
+              required
+              pattern="254[0-9]{9}"
+              title="Please enter a valid Kenyan phone number (254XXXXXXXXX)"
+            >
+            <!-- <small style="color: #666; font-size: 0.9rem;">Format: 254XXXXXXXXX (including country code)</small> -->
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="closeBoardingPassModal()">Cancel</button>
+        <button type="submit" form="boardingPassForm" class="btn btn-primary" id="submitBtn">
+          Send Boarding Pass
+        </button>
+      </div>
+    </div>
+  </div>
+
   <footer>
     <p>&copy; 2026 Test WhatsApp. All rights reserved.</p>
   </footer>
@@ -244,6 +471,98 @@
       script.setAttribute("cta", "Start Chat");
       document.body.appendChild(script);
     })();
+  </script>
+
+  <!-- Boarding Pass Functionality -->
+  <script>
+    // Configuration - UPDATE THIS with your actual API endpoint
+    //const API_ENDPOINT = 'http://10.0.0.52:5055/trigger/booking_eticket';
+    
+    // For production, use a proxy or publicly accessible endpoint:
+     const API_ENDPOINT = 'https://nonwarrantable-rhea-paronomastically.ngrok-free.dev/trigger/booking_eticket';
+
+    function openBoardingPassModal() {
+      document.getElementById('boardingPassModal').style.display = 'block';
+      document.getElementById('phoneNumber').focus();
+      hideAlert();
+    }
+
+    function closeBoardingPassModal() {
+      document.getElementById('boardingPassModal').style.display = 'none';
+      document.getElementById('boardingPassForm').reset();
+      hideAlert();
+    }
+
+    // Close modal when clicking outside
+    window.onclick = function(event) {
+      const modal = document.getElementById('boardingPassModal');
+      if (event.target === modal) {
+        closeBoardingPassModal();
+      }
+    }
+
+    function showAlert(message, type) {
+      const alertBox = document.getElementById('alertBox');
+      alertBox.textContent = message;
+      alertBox.className = `alert alert-${type}`;
+      alertBox.style.display = 'block';
+    }
+
+    function hideAlert() {
+      const alertBox = document.getElementById('alertBox');
+      alertBox.style.display = 'none';
+    }
+
+    async function sendBoardingPass(event) {
+      event.preventDefault();
+      
+      const submitBtn = document.getElementById('submitBtn');
+      const phoneNumber = document.getElementById('phoneNumber').value.trim();
+      
+      // Disable button and show loading
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<span class="loading"></span> Sending...';
+      hideAlert();
+
+      try {
+        const response = await fetch(API_ENDPOINT, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            to: phoneNumber
+          })
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          showAlert('✅ Boarding pass sent successfully! Check your WhatsApp.', 'success');
+          
+          // Close modal after 2 seconds
+          setTimeout(() => {
+            closeBoardingPassModal();
+          }, 2000);
+        } else {
+          const errorData = await response.json().catch(() => ({}));
+          showAlert(`❌ Failed to send boarding pass: ${errorData.message || 'Server error'}`, 'error');
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        showAlert(`❌ Error: ${error.message}. Please check your connection and API endpoint.`, 'error');
+      } finally {
+        // Re-enable button
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Send Boarding Pass';
+      }
+    }
+
+    // Close modal with Escape key
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape') {
+        closeBoardingPassModal();
+      }
+    });
   </script>
 </body>
 </html>
